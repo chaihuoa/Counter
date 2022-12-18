@@ -8,9 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Counter: Equatable {
+struct Counter: Equatable, Identifiable {
     var count: Int = 0
     var secret = Int.random(in: -100...100)
+    var id: UUID = UUID()
 }
 
 // View Model
@@ -44,10 +45,18 @@ enum CounterAction {
     case reset
 }
 
-struct CounterEnvironment { }
+struct CounterEnvironment {
+    var generateRandom: (ClosedRange<Int>) -> Int
+    var uuid: () -> UUID
+    
+    static let live = CounterEnvironment(
+        generateRandom: Int.random,
+        uuid: UUID.init
+    )
+}
 
 let counterReducer = AnyReducer<Counter, CounterAction, CounterEnvironment> {
-  state, action, _ in
+  state, action, environment in
     switch action {
     case .increment:
         state.count += 1
@@ -66,10 +75,11 @@ let counterReducer = AnyReducer<Counter, CounterAction, CounterEnvironment> {
         return .none
     case .reset:
         state.count = 0
-        state.secret = Int.random(in: -100...100)
+        state.secret = environment.generateRandom(-100 ... 100)
+        state.id = environment.uuid()
         return .none
     }
-}
+}.debug()
 
 struct CounterView: View {
     let store: Store<Counter, CounterAction>
@@ -129,7 +139,7 @@ struct ContentView_Previews: PreviewProvider {
       store: Store(
         initialState: Counter(),
         reducer: counterReducer,
-        environment: CounterEnvironment()
+        environment: .live
     ))
   }
 }
