@@ -9,14 +9,14 @@ import SwiftUI
 import ComposableArchitecture
 
 @main
-struct CounterApp: App {
+struct GameApp: App {
   var body: some Scene {
     WindowGroup {
-      CounterView(
+      GameView(
         store: Store(
-          initialState: Counter(),
-          reducer: counterReducer,
-          environment: .live)
+          initialState: GameState(),
+          reducer: gameReducer,
+          environment: GameEnvironment())
       )
     }
   }

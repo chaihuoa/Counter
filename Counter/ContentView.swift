@@ -8,14 +8,14 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Counter: Equatable, Identifiable {
+struct CounterState: Equatable, Identifiable {
     var count: Int = 0
     var secret = Int.random(in: -100...100)
     var id: UUID = UUID()
 }
 
 // View Model
-extension Counter {
+extension CounterState {
     var countString: String {
         get { String(count) }
         set { count = Int(newValue) ?? count }
@@ -55,7 +55,7 @@ struct CounterEnvironment {
     )
 }
 
-let counterReducer = AnyReducer<Counter, CounterAction, CounterEnvironment> {
+let counterReducer = AnyReducer<CounterState, CounterAction, CounterEnvironment> {
   state, action, environment in
     switch action {
     case .increment:
@@ -82,7 +82,7 @@ let counterReducer = AnyReducer<Counter, CounterAction, CounterEnvironment> {
 }.debug()
 
 struct CounterView: View {
-    let store: Store<Counter, CounterAction>
+    let store: Store<CounterState, CounterAction>
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
@@ -118,7 +118,7 @@ struct CounterView: View {
         return value < 0 ? .red : .green
     }
     
-    func checkLabel(with checkResult: Counter.CheckResult) -> some View {
+    func checkLabel(with checkResult: CounterState.CheckResult) -> some View {
         switch checkResult {
         case .lower:
           return Label("Lower", systemImage: "lessthan.circle")
@@ -137,7 +137,7 @@ struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     CounterView(
       store: Store(
-        initialState: Counter(),
+        initialState: CounterState(),
         reducer: counterReducer,
         environment: .live
     ))

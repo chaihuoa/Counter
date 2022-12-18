@@ -11,11 +11,11 @@ import ComposableArchitecture
 
 final class CounterTests: XCTestCase {
     
-    var store: TestStore<Counter, CounterAction, Counter, CounterAction, CounterEnvironment>!
+    var store: TestStore<CounterState, CounterAction, CounterState, CounterAction, CounterEnvironment>!
 
     override func setUpWithError() throws {
       store = TestStore(
-        initialState: Counter(count: Int.random(in: -100...100)),
+        initialState: CounterState(count: Int.random(in: -100...100)),
         reducer: counterReducer,
         environment: .test
       )
@@ -35,7 +35,7 @@ final class CounterTests: XCTestCase {
     
     func testReset() throws {
       store.send(.reset) { state in
-        state = Counter(count: 0, secret: 5, id: .dummy)
+        state = CounterState(count: 0, secret: 5, id: .dummy)
       }
     }
     
