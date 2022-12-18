@@ -8,19 +8,19 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct GameResult: Equatable {
-    let secret: Int
-    let guess: Int
+struct GameResult: Equatable, Identifiable {
+    let counter: CounterState
     let timeSpent: TimeInterval
 
-    var correct: Bool { secret == guess }
+    var correct: Bool { counter.secret == counter.count }
+    var id: UUID { counter.id }
 }
 
 struct GameState: Equatable {
     var counter: CounterState = .init()
     var timer: TimerState = .init()
     
-    var results: [GameResult] = []
+    var results = IdentifiedArrayOf<GameResult>()
     var lastTimestamp = 0.0
 }
 
@@ -34,7 +34,9 @@ struct GameEnvironment { }
 let gameReducer = AnyReducer<GameState, GameAction, GameEnvironment>.combine(.init { state, action, environment in
     switch action {
     case .counter(.reset):
-        let result = GameResult(secret: state.counter.secret, guess: state.counter.count, timeSpent: state.timer.duration - state.lastTimestamp)
+        let result = GameResult(
+            counter: state.counter,
+            timeSpent: state.timer.duration - state.lastTimestamp)
         state.results.append(result)
         state.lastTimestamp = state.timer.duration
         return .none
@@ -59,7 +61,7 @@ struct GameView: View {
     var body: some View {
         WithViewStore(store.scope(state: \.results)) { viewStore in
             VStack {
-                resultLabel(viewStore.state)
+                resultLabel(viewStore.state.elements)
                 Divider()
                 TimerLabelView(store: store.scope(state: \.timer, action: GameAction.timer))
                 CounterView(store: store.scope(state: \.counter, action: GameAction.counter))
