@@ -10,14 +10,16 @@ import ComposableArchitecture
 
 @main
 struct GameApp: App {
-  var body: some Scene {
-    WindowGroup {
-      GameView(
-        store: Store(
-          initialState: GameState(),
-          reducer: gameReducer,
-          environment: GameEnvironment())
-      )
+    var body: some Scene {
+        WindowGroup {
+            NavigationView {
+                GameView(
+                    store: Store(
+                        initialState: GameState(),
+                        reducer: gameReducer,
+                        environment: GameEnvironment())
+                )
+            }
+        }
     }
-  }
 }
