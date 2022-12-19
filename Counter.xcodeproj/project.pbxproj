@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		E924C882294EC8D000D85BFD /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C881294EC8D000D85BFD /* TimerLabelView.swift */; };
 		E924C884294ED66600D85BFD /* TimerLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C883294ED66600D85BFD /* TimerLabelTests.swift */; };
-		E924C886294ED93100D85BFD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C885294ED93100D85BFD /* GameView.swift */; };
 		E924C888294F78A100D85BFD /* GameResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C887294F78A100D85BFD /* GameResultListView.swift */; };
+		E924C88A294FEDE600D85BFD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C889294FEDE600D85BFD /* GameView.swift */; };
 		E9D7739A294CE84B0093F59A /* GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D77399294CE84B0093F59A /* GameApp.swift */; };
 		E9D7739C294CE84B0093F59A /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D7739B294CE84B0093F59A /* CounterView.swift */; };
 		E9D7739E294CE84F0093F59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D7739D294CE84F0093F59A /* Assets.xcassets */; };
@@ -41,8 +41,8 @@
 /* Begin PBXFileReference section */
 		E924C881294EC8D000D85BFD /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		E924C883294ED66600D85BFD /* TimerLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelTests.swift; sourceTree = "<group>"; };
-		E924C885294ED93100D85BFD /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = SOURCE_ROOT; };
 		E924C887294F78A100D85BFD /* GameResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultListView.swift; sourceTree = "<group>"; usesTabs = 0; };
+		E924C889294FEDE600D85BFD /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		E9D77396294CE84B0093F59A /* Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D77399294CE84B0093F59A /* GameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameApp.swift; sourceTree = "<group>"; };
 		E9D7739B294CE84B0093F59A /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				E9D77399294CE84B0093F59A /* GameApp.swift */,
-				E924C885294ED93100D85BFD /* GameView.swift */,
+				E924C889294FEDE600D85BFD /* GameView.swift */,
 				E924C887294F78A100D85BFD /* GameResultListView.swift */,
 				E924C881294EC8D000D85BFD /* TimerLabelView.swift */,
 				E9D7739B294CE84B0093F59A /* CounterView.swift */,
@@ -280,7 +280,7 @@
 				E924C888294F78A100D85BFD /* GameResultListView.swift in Sources */,
 				E9D7739C294CE84B0093F59A /* CounterView.swift in Sources */,
 				E9D7739A294CE84B0093F59A /* GameApp.swift in Sources */,
-				E924C886294ED93100D85BFD /* GameView.swift in Sources */,
+				E924C88A294FEDE600D85BFD /* GameView.swift in Sources */,
 				E924C882294EC8D000D85BFD /* TimerLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
