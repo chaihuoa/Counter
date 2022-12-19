@@ -41,6 +41,7 @@ let gameReducer = AnyReducer<GameState, GameAction, GameEnvironment>.combine(.in
             state.results.append(result)
             state.lastTimestamp = state.timer.duration
             state.timer.duration = 0
+            state.timer.started = nil
             return .none
         default:
             return .none
@@ -71,9 +72,16 @@ struct GameView: View {
                 resultLabel(viewStore.state.elements)
                 Divider()
                 TimerLabelView(store: store.scope(state: \.timer, action: GameAction.timer))
+                Spacer().frame(height: 100)
                 CounterView(store: store.scope(state: \.counter, action: GameAction.counter))
+                Spacer().frame(height: 50)
+                HStack {
+                    Button("Start") { viewStore.send(.timer(.start)) }
+                    Button("Stop") { viewStore.send(.timer(.stop)) }
+                }
+                Spacer()
             }.onAppear {
-                viewStore.send(.timer(.start))
+//                viewStore.send(.timer(.start))
             }
         }.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
